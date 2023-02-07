@@ -1,10 +1,10 @@
 pipeline {
     agent { dockerfile true }
     stages {
-        stage('Test') {
+        stage('Build') {
             steps {
-                sh 'apt-get update && apt-get install -y procps'
-                sh 'sudo npm install -g npm'
+                sh 'mvn --version'
+                echo "Build"          
             }
         }
     }
