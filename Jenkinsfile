@@ -1,10 +1,14 @@
 pipeline {
-    agent { dockerfile true }
+    agent {
+        docker {
+            image 'alpine:latest'
+            args '-p 3000:3000'
+        }
+    }
     stages {
         stage('Build') {
             steps {
-                sh 'mvn --version'
-                echo "Build"          
+                sh 'npm install'
             }
         }
     }
