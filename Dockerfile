@@ -20,7 +20,7 @@ RUN apk add --no-cache \
     nodejs npm 
 
 COPY package.json  .
-RUN npm install -g npm 
+RUN npm install
 
 FROM alpine:latest
 
