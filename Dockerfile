@@ -20,12 +20,6 @@ RUN apk add --no-cache \
     nodejs npm 
 
 COPY package.json  .
-RUN sudo apt-get -y update && apt-get -y install sudo
-RUN sudo apt-get update && apt-get install -y procps
-RUN sudo apt-get install -y sqlite3
-RUN sudo apt-get install -y python
-RUN sudo apt-get install -y python3-pip
-
 RUN npm install -g npm 
 
 FROM alpine:latest
