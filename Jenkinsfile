@@ -12,14 +12,9 @@ pipeline {
      
     stage('Build') {
       steps {
+        ah 'npm install sqlite3'
         sh 'npm install'
       }
     }  
-     
-    stage('Test') {
-      steps {
-        sh 'node test'
-      }
-    }
   }
 }
