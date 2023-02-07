@@ -1,15 +1,25 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:16.13.1-alpine'
-            args '-p 3000:3000'
-        }
+  agent any
+    
+  tools {nodejs "node"}
+    
+  stages {
+    stage('Git') {
+      steps {
+        git 'https://github.com/jhontrujillo12/timeoff-management-application.git'
+      }
     }
-    stages {
-        stage('Build') {
-            steps {
-                sh 'npm install'
-            }
-        }
+     
+    stage('Build') {
+      steps {
+        sh 'npm install'
+      }
+    }  
+     
+    stage('Test') {
+      steps {
+        sh 'node test'
+      }
     }
+  }
 }
