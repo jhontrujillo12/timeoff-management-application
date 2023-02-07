@@ -20,6 +20,13 @@ RUN apk add --no-cache \
     nodejs npm 
 
 COPY package.json  .
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libsqlite3-dev python3 build-essential && \
+    yarn config set python /usr/bin/python3
+
+RUN yarn install --frozen-lockfile --network-timeout 600000 && rm -rf "$(yarn cache dir)"
+
 RUN npm install
 
 FROM alpine:latest
