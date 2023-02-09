@@ -1,5 +1,10 @@
 pipeline {
 	agent none
+
+  environment {
+    DOCKERHUB_CREDENTIALS=credentials('dockerHub')
+  }
+
   stages {
     stage('Docker Build') {
     	agent any
@@ -7,13 +12,18 @@ pipeline {
       	sh 'docker build -t timeoff-image .'
       }
     }
-    stage('Docker Push') {
+
+    stage('Login') {
+      agent any
+      steps {
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+      }
+    }   
+
+    stage('Push') {
     	agent any
       steps {
-      	withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'jhontrujillo12')]) {
-        	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-          sh 'docker push timeoff-image'
-        }
+        sh 'docker push timeoff-image'
       }
     }
   }
