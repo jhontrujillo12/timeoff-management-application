@@ -17,7 +17,7 @@ pipeline {
     stage('Push Artifactory') {
     	agent any
       steps {
-        sh 'docker login -ujhontrujillo12@gmail.com technicaltest.jfrog.io'
+        sh 'docker login -ujhontrujillo12@gmail.com technicaltest.jfrog.io -u ${JFROG_USER} -p ${JFROG_PASSWORD}'
       }
     }
   }
