@@ -16,10 +16,8 @@ pipeline {
     stage('Push Artifactory') {
     	agent any
       steps {
-        sh '''
-        docker login https://technicaltest.jfrog.io -u jhontrujillo12@gmail.com -p ${JFROG_PASSWORD}
-        docker push timeoff-image
-        '''
+        sh 'docker login -ujhontrujillo12@gmail.com technicaltest.jfrog.io -u jhontrujillo12@gmail.com -p ${JFROG_PASSWORD}'
+        sh 'docker push timeoff-image'
       }
     }
   }
