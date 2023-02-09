@@ -13,17 +13,13 @@ pipeline {
       }
     }
 
-    stage('Login') {
-      agent any
-      steps {
-        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-      }
-    }   
-
-    stage('Push') {
+    stage('Push Artifactory') {
     	agent any
       steps {
-        dockerImage.Push()
+        sh '''
+        docker login -ujhontrujillo12@gmail.com technicaltest.jfrog.io -u jhontrujillo12@gmail.com -p ${JFROG_PASSWORD}
+        docker push timeoff-image
+        '''
       }
     }
   }
