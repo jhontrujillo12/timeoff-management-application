@@ -23,7 +23,7 @@ pipeline {
     stage('Push') {
     	agent any
       steps {
-        dockerImage.push()
+        dockerImage.Push()
       }
     }
   }
