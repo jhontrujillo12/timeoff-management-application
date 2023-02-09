@@ -1,11 +1,11 @@
 pipeline {
-	agent none
-  stages {
-    stage('Docker Build') {
-    	agent any
-      steps {
-      	sh 'docker build -t timeoff-image .'
-      }
+    agent { dockerfile true }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+                sh 'svn --version'
+            }
+        }
     }
-  }
 }
