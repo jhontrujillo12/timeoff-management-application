@@ -23,7 +23,7 @@ pipeline {
     stage('Push') {
     	agent any
       steps {
-        sh 'docker push timeoff-image'
+        dockerImage.push()
       }
     }
   }
