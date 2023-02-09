@@ -17,7 +17,7 @@ pipeline {
     stage('Push Artifactory') {
     	agent any
       steps {
-        sh 'jfrog rt upload --url https://technicaltest.jfrog.io/artifactory/technicaltestrepoartifactory/ --access-token ${ARTIFACTORY_ACCESS_TOKEN} timeoff-image technicaltestrepoartifactory'
+        sh 'docker login -ujhontrujillo12@gmail.com technicaltest.jfrog.io'
       }
     }
   }
