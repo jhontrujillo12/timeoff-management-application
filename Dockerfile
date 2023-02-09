@@ -21,6 +21,8 @@ RUN apk add --no-cache \
 
 COPY package.json  .
 
+RUN rm -rf node_modules
+RUN rm package-lock.json
 RUN npm install
 
 FROM alpine:latest
