@@ -2,7 +2,8 @@ pipeline {
 	agent none
 
   environment {
-    DOCKERHUB_CREDENTIALS=credentials('dockerHub')
+    CI = true
+    ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory')
   }
 
   stages {
@@ -16,8 +17,7 @@ pipeline {
     stage('Push Artifactory') {
     	agent any
       steps {
-        sh 'docker login -ujhontrujillo12@gmail.com technicaltest.jfrog.io -u jhontrujillo12@gmail.com -p ${JFROG_PASSWORD}'
-        sh 'docker push timeoff-image'
+        sh 'jfrog rt upload --url https://technicaltest.jfrog.io/artifactory/technicaltestrepoartifactory/ --access-token ${ARTIFACTORY_ACCESS_TOKEN} timeoff-image technicaltestrepoartifactory'
       }
     }
   }
