@@ -23,9 +23,9 @@ pipeline {
     stage('Pushing to ECR') {
       steps{  
         sh '''
-        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 974687818750.dkr.ecr.us-east-1.amazonaws.com
-        docker tag timeoff 974687818750.dkr.ecr.us-east-1.amazonaws.com/timeoff:latest
-        docker push 974687818750.dkr.ecr.us-east-1.amazonaws.com/timeoff:latest
+        aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/j7m7m7b0
+        docker tag repo_public_technicaltest:latest public.ecr.aws/j7m7m7b0/repo_public_technicaltest:latest
+        docker push public.ecr.aws/j7m7m7b0/repo_public_technicaltest:latest
         '''
       }
     }
