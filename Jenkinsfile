@@ -22,7 +22,10 @@ pipeline {
     // Uploading Docker images into AWS ECR
     stage('Pushing to ECR') {
       steps{  
-        sh 'docker push 974687818750.dkr.ecr.us-east-1.amazonaws.com/timeoff:latest'
+        sh '''
+        docker tag 974687818750.dkr.ecr.us-east-1.amazonaws.com/timeoff:latest
+        docker push 974687818750.dkr.ecr.us-east-1.amazonaws.com/timeoff:latest
+        '''
       }
     }
   }
