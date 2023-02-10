@@ -24,8 +24,8 @@ pipeline {
       steps{  
         sh '''
         aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/j7m7m7b0
-        docker tag repo_public_technicaltest:latest public.ecr.aws/j7m7m7b0/repo_public_technicaltest:latest
-        docker push public.ecr.aws/j7m7m7b0/repo_public_technicaltest:latest
+        docker tag repo_public_technicaltest:latest public.ecr.aws/j7m7m7b0/timeoff:latest
+        docker push public.ecr.aws/j7m7m7b0/timeoff:latest
         '''
       }
     }
