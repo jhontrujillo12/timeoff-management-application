@@ -23,7 +23,7 @@ pipeline {
     stage('Pushing to ECR') {
       steps{  
         sh '''
-        docker tag 974687818750.dkr.ecr.us-east-1.amazonaws.com/timeoff:latest
+        docker tag timeoff 974687818750.dkr.ecr.us-east-1.amazonaws.com/timeoff:latest
         docker push 974687818750.dkr.ecr.us-east-1.amazonaws.com/timeoff:latest
         '''
       }
