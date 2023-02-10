@@ -18,20 +18,11 @@ pipeline {
         '''
       }
     }
-
-    stage('Building image') {
-      steps{
-        sh 'dockerImage = docker.build jenkins-ecr-technical-test:latest'
-      }
-    }
    
     // Uploading Docker images into AWS ECR
     stage('Pushing to ECR') {
       steps{  
-        sh '''
-        docker tag jenkins-ecr-technical-test:latest 974687818750.dkr.ecr.us-east-1.amazonaws.com/jenkins-ecr-technical-test:latest
-        docker push 974687818750.dkr.ecr.us-east-1.amazonaws.com/jenkins-ecr-technical-test:latest
-        '''
+        sh 'docker push 974687818750.dkr.ecr.us-east-1.amazonaws.com/timeoff:latest'
       }
     }
   }
