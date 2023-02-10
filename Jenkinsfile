@@ -19,12 +19,6 @@ pipeline {
       }
     }
 
-    stage('Logging into AWS ECR') {
-      steps {  
-        sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 974687818750.dkr.ecr.us-east-1.amazonaws.com'
-      }
-    }
-
     stage('Building image') {
       steps{
         sh 'dockerImage = docker.build jenkins-ecr-technical-test:latest'
